@@ -1,0 +1,13 @@
+This is an example of using Amazon simple workflow services in Ruby.
+
+### To get the example running you must,
+1.   Log in to the Amazon console and get your access key and secret access keys
+2.   Under to SWF,
+    * Make a new domain
+    * Make a new Workflow Types named 'Make Sandwich'
+    * Make 4 new Activity Types named 'Add-fillings', 'Add-spread', 'Get-bread', and 'toasted'
+3.   Rename the config-sample.yml to config.yml and update with your info.
+4.   Run bundle install, to install any Gem for the project.
+5.   Run foreman start
+
+At this point you should be able to go to http://0.0.0.0:4567/ and make an order.
