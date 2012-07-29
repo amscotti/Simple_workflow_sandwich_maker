@@ -1,0 +1,4 @@
+access_key_id: Your Access Key ID, from https://portal.aws.amazon.com/gp/aws/securityCredentials 
+secret_access_key: Your Secret Access Key, from https://portal.aws.amazon.com/gp/aws/securityCredentials 
+swf_domains: Domains name
+swf_task_list: Task list name

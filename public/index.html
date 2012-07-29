@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order you sandwich!</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+<h1>Place Your Order</h1>
+<br/>
+<form method id="order" action="POST">
+
+	<label for="bread">Your Name</label>
+	<input type="text" name="name"/><br />
+    <label for="bread">Pick Your Bread</label>
+    <select id="bread" name="bread">
+        <option>White</option>
+        <option>Sourdough</option>
+        <option>Bagel</option>
+        <option>Whole wheat</option>
+    </select> 
+    <br/>
+    <label for="spread">Pick Your Spread</label>
+    <select id="spread" name="spread">
+        <option>Dijonnaise</option>
+        <option>Mayonnaise</option>
+        <option>Mustard</option>
+        <option>Hummus</option>
+        <option>None</option>
+    </select> 
+    <br/>
+    <label for="fillings">Pick Your Fillings</label>
+    <br/>
+    <input type="checkbox" name="fillings" value="Bacon" /> Bacon<br />
+    <input type="checkbox" name="fillings" value="Lettuce" /> Lettuce<br />
+    <input type="checkbox" name="fillings" value="Tomato" /> Tomato<br />
+    <input type="checkbox" name="fillings" value="Ham" /> Ham<br />
+    <input type="checkbox" name="fillings" value="Egg" /> Egg<br />
+    <input type="checkbox" name="fillings" value="Cheese" /> Cheese<br />
+    <br/>
+    <input type="checkbox" name="toasted" value="true" /> Toasted?<br />
+   <input type="submit" value="Order" id="orderBtn"  class="submitBtn">
+</form>
+
+</body>
+
+<script>
+
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+$("#order").submit(function (event) {
+	event.preventDefault();
+    $.post(
+    	"/sandwich", 
+    	{"order": JSON.stringify($('form').serializeObject())}
+    );
+    return false;
+});
+
+</script>
+
+</html>
